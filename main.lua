@@ -99,7 +99,7 @@ local function RenderClosureSpy()
                             local EditorWrapper = "\nlocal _wrapper = newproxy(true)\n"
                             EditorWrapper = EditorWrapper .. "local _basefunction = %s\n"
                             EditorWrapper = EditorWrapper .. "local _wrapper_meta = debug.getmetatable(_wrapper)\n"
-                            EditorWrapper = EditorWrapper .. "_wrapper_meta.__index=function(_,k) debug.getupvalue(_basefunction, k) end\n"
+                            EditorWrapper = EditorWrapper .. "_wrapper_meta.__index=function(_,k) return debug.getupvalue(_basefunction, k) end\n"
                             EditorWrapper = EditorWrapper .. "_wrapper_meta.__newindex=function(_,k,v) debug.setupvalue(_basefunction, k, v) end\n"
                             EditorWrapper = EditorWrapper .. "-- Example of setting Upvalue with id of 1 to 100\n"
                             EditorWrapper = EditorWrapper .. "_wrapper[1] = 100\n"
